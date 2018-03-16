@@ -20,8 +20,6 @@ namespace TestCode
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Text = "1";
-            textBox1.Text = "2";
-            textBox1.Text = "3";
         }
     }
 }
