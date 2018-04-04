@@ -32,5 +32,15 @@ namespace TestCode.Properties {
                 return ((string)(this["TestCode_cn_com_webxml_www_WeatherWebService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:7887/WebService1.asmx")]
+        public string TestCode_localhost_WebService1 {
+            get {
+                return ((string)(this["TestCode_localhost_WebService1"]));
+            }
+        }
     }
 }

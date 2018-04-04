@@ -61,6 +61,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\localhost\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +92,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\cn.com.webxml.www\WeatherWebService.wsdl" />
+    <None Include="Web References\localhost\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\localhost\WebService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -100,6 +110,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:7887/WebService1.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\localhost\</RelPath>
+      <UpdateFromURL>http://localhost:7887/WebService1.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TestCode_localhost_WebService1</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://www.webxml.com.cn/WebServices/WeatherWebService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\cn.com.webxml.www\</RelPath>
@@ -114,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\cn.com.webxml.www\WeatherWebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\localhost\WebService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
