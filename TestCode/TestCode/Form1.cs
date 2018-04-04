@@ -19,11 +19,19 @@ namespace TestCode
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "1";
-            textBox1.Text = "2";
-            textBox1.Text = "3";
-            textBox1.Text = "4";
-            textBox1.Text = "5";
+            cn.com.webxml.www.WeatherWebService ws = new cn.com.webxml.www.WeatherWebService();
+            string[] r = ws.getWeatherbyCityName(this.textBox1.Text);
+            this.richTextBox1.Text = "";
+            if (r == null)
+            {
+                this.richTextBox1.Text = "无" + this.textBox1.Text + "城市的天气信息";
+                return;
+            }
+            foreach (string i in r)
+            {
+                this.richTextBox1.Text += i;
+            }
+
         }
     }
 }
