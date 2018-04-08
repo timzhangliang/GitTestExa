@@ -33,7 +33,7 @@ namespace TestCode
             //    this.richTextBox1.Text += i;
             //}
             WebService1 a =new WebService1();
-            int m = a.Add(textBox1.Text, textBox2.Text);
+            int m = a.Multi(textBox1.Text, textBox2.Text);
             richTextBox1.Text = m.ToString();
         }
     }

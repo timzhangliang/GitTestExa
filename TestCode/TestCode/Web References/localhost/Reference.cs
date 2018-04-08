@@ -33,6 +33,8 @@ namespace TestCode.localhost {
         
         private System.Threading.SendOrPostCallback AddOperationCompleted;
         
+        private System.Threading.SendOrPostCallback MultiOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -76,6 +78,9 @@ namespace TestCode.localhost {
         
         /// <remarks/>
         public event AddCompletedEventHandler AddCompleted;
+        
+        /// <remarks/>
+        public event MultiCompletedEventHandler MultiCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -132,6 +137,37 @@ namespace TestCode.localhost {
             if ((this.AddCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AddCompleted(this, new AddCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/Multi", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int Multi(string a, string b) {
+            object[] results = this.Invoke("Multi", new object[] {
+                        a,
+                        b});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MultiAsync(string a, string b) {
+            this.MultiAsync(a, b, null);
+        }
+        
+        /// <remarks/>
+        public void MultiAsync(string a, string b, object userState) {
+            if ((this.MultiOperationCompleted == null)) {
+                this.MultiOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMultiOperationCompleted);
+            }
+            this.InvokeAsync("Multi", new object[] {
+                        a,
+                        b}, this.MultiOperationCompleted, userState);
+        }
+        
+        private void OnMultiOperationCompleted(object arg) {
+            if ((this.MultiCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MultiCompleted(this, new MultiCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -193,6 +229,32 @@ namespace TestCode.localhost {
         private object[] results;
         
         internal AddCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    public delegate void MultiCompletedEventHandler(object sender, MultiCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1099.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MultiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MultiCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

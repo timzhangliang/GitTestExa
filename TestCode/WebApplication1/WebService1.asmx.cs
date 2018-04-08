@@ -30,7 +30,7 @@ namespace WebApplication1
             sum = Convert.ToInt32(a) + Convert.ToInt32(b);
             return sum;
         }
-
+        [WebMethod(Description = "求和方法")]
         public int Multi(string a, string b)
         {
             int sum = 0;
