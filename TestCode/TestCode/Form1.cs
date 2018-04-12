@@ -21,6 +21,7 @@ namespace TestCode
         {
             textBox1.Text = "1";
             textBox1.Text = "2";
+            textBox1.Text = "3";
         }
     }
 }
